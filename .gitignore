@@ -46,3 +46,6 @@ bots/solver/.env
 .initia/cache/
 .initia/keyring/
 .weave/
+
+# Generated SIS rollup config — contains 5 system-key mnemonics, NEVER commit
+weave-rollup-config.json

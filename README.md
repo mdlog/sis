@@ -75,16 +75,34 @@ Follow the same 11-step official flow at [docs.initia.xyz/hackathon/get-started]
 - `minitiad` CLI (installed by `weave`)
 - `jq`
 
-### 2. Launch the SIS Minitia
+### 2. Launch the SIS Minitia (non-interactive)
+
+This repo ships a generator so you don't have to walk through the interactive
+`weave init` for the rollup. The Minitia runs in **isolated dirs** (`~/.minitia-sis`,
+`~/.opinit-sis`) so it never collides with another Minitia you may already have.
 
 ```bash
+# 2a. Bootstrap the gas station (one-time, interactive — only the first time you ever use weave)
 weave init
-# Choose: Move track · chain-id: sis-testnet-1 · gas denom: uinit
-weave opinit init executor   && weave opinit start executor -d
-weave relayer init           && weave relayer start -d
+
+# 2b. Generate fresh OPinit/validator system keys + the launch config
+node scripts/generate-sis-config.mjs
+# → produces weave-rollup-config.json (gitignored, mode 0600)
+
+# 2c. Launch the rollup non-interactively
+weave rollup launch \
+  --vm move \
+  --minitia-dir ~/.minitia-sis \
+  --opinit-dir  ~/.opinit-sis  \
+  --with-config ./weave-rollup-config.json
+
+# 2d. Start the OPinit Executor + IBC Relayer (still in isolated dirs)
+weave opinit init executor --opinit-dir ~/.opinit-sis
+weave opinit start executor -d --opinit-dir ~/.opinit-sis
+weave relayer init    && weave relayer start -d
 ```
 
-Save the chain ID printed at the end — you'll need it in `.env`.
+The chain id is `sis-testnet-1` (set in `weave-rollup-config.template.json`).
 
 ### 3. Fund the gas station
 
