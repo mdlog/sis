@@ -1,0 +1,10 @@
+[package]
+name = "sis"
+version = "0.1.0"
+
+[dependencies]
+InitiaStdlib = { git = "https://github.com/initia-labs/movevm.git", subdir = "precompile/modules/initia_stdlib", rev = "main" }
+
+[addresses]
+sis = "_"
+std = "0x1"

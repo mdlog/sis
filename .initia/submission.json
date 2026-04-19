@@ -1,0 +1,12 @@
+{
+  "project_name": "Sovereign Intent Solver (SIS)",
+  "repo_url": "https://github.com/REPLACE_ME/sovereign-intent-solver",
+  "commit_sha": "0000000000000000000000000000000000000000",
+  "rollup_chain_id": "sis-testnet-1",
+  "deployed_address": "init1REPLACE_ME_WITH_MODULE_ADDRESS",
+  "vm": "move",
+  "native_feature": "auto-signing",
+  "core_logic_path": "move/sources/intent_registry.move",
+  "native_feature_frontend_path": "src/components/IntentComposer.tsx",
+  "demo_video_url": "https://youtu.be/REPLACE_ME"
+}
