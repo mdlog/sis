@@ -1,7 +1,7 @@
-/// Sovereign Intent Solver — Intent Registry
+/// Sovereign Intent Solver - Intent Registry
 /// Canonical on-chain lifecycle for a single intent:
-///   Pending → Claimed → Settled
-///                     ↘ Refunded (deadline elapsed, solver failed)
+///   Pending -> Claimed -> Settled
+///                     v Refunded (deadline elapsed, solver failed)
 module sis::intent_registry {
     use std::error;
     use std::option::{Self, Option};
@@ -63,9 +63,9 @@ module sis::intent_registry {
     struct Registry has key {
         next_id: u64,
         intents: Table<u64, Intent>,
-        /// ring buffer of recent intent ids, newest first — cap at 128
+        /// ring buffer of recent intent ids, newest first - cap at 128
         recent: vector<u64>,
-        /// pending intent ids, newest last — pruned on claim/refund
+        /// pending intent ids, newest last - pruned on claim/refund
         pending: vector<u64>,
         solver_stats: Table<address, SolverStat>,
         /// ordered list of solver addresses for leaderboard enumeration
